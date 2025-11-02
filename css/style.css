@@ -1,0 +1,354 @@
+/* ===========================================
+   Projeto: ONG Conecta
+   Autor: Lucas Silva de Oliveira
+   Versão: Entrega II (CSS aprimorado)
+   =========================================== */
+
+/* ========== DESIGN SYSTEM ========== */
+:root {
+  /* Cores (8+) */
+  --cor-primaria: #0a6fa0;
+  --cor-primaria-escura: #094e73;
+  --cor-secundaria: #1e88e5;
+  --cor-secundaria-escura: #1565c0;
+  --cor-fundo: #f5f5f5;
+  --cor-texto: #333333;
+  --cor-neutra: #e3e3e3;
+  --cor-branca: #ffffff;
+
+  --cor-sucesso-bg: #d4edda;
+  --cor-sucesso-tx: #155724;
+  --cor-aviso-bg: #fff3cd;
+  --cor-aviso-tx: #856404;
+  --cor-erro-bg: #fdecea;
+  --cor-erro-tx: #b71c1c;
+
+  /* Tipografia (5+) */
+  --font-xl: 2.25rem; /* ~36px */
+  --font-lg: 1.75rem; /* ~28px */
+  --font-md: 1.25rem; /* ~20px */
+  --font-sm: 1rem;    /* 16px */
+  --font-xs: 0.875rem;/* 14px */
+
+  /* Espaçamento modular */
+  --space-8: 8px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-48: 48px;
+  --space-64: 64px;
+
+  /* Bordas e sombras */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* ========== BASE ========== */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  text-align: center;
+  line-height: 1.5;
+}
+
+h1 { font-size: var(--font-xl); margin: var(--space-16) 0; }
+h2 { font-size: var(--font-lg); margin: var(--space-16) 0; }
+h3 { font-size: var(--font-md); margin: var(--space-16) 0; }
+p, label, input, select, textarea, button { font-size: var(--font-sm); }
+
+/* ========== IMAGENS ========== */
+img {
+  display: block;
+  margin: var(--space-8) auto;
+  max-width: 520px;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  transition: transform 0.3s ease;
+}
+img:hover { transform: scale(1.02); }
+
+/* ========== CABEÇALHO E RODAPÉ ========== */
+header, footer {
+  background-color: var(--cor-primaria);
+  color: var(--cor-branca);
+  text-align: center;
+  padding: var(--space-16);
+}
+.logo { width: 25%; max-width: 250px; height: auto; }
+
+/* ========== NAVEGAÇÃO ========== */
+nav { position: relative; }
+nav ul { list-style: none; padding: 0; margin: 0; }
+nav li { display: inline-block; position: relative; margin: 0 var(--space-8); }
+nav a {
+  color: var(--cor-branca);
+  text-decoration: none;
+  font-weight: bold;
+  padding: 6px 8px;
+  border-radius: var(--radius-sm);
+}
+nav a:hover,
+nav a.ativo { text-decoration: underline; }
+
+/* Menu mobile controlado pelo JS: menu.classList.toggle("active") */
+#menu.active { display: block; }
+
+/* ========== SUBMENU (dropdown) ========== */
+.submenu { position: relative; display: inline-block; }
+.submenu-list {
+  display: none;
+  position: absolute;
+  top: 100%; left: 0;
+  background-color: var(--cor-primaria);
+  padding: 10px 0;
+  list-style: none;
+  min-width: 180px;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+  z-index: 1000;
+}
+/* Classe usada no JS: submenu.classList.toggle("show") */
+.submenu-list.show { display: block; }
+.submenu-list li a {
+  display: block;
+  color: var(--cor-branca);
+  text-decoration: none;
+  padding: 10px 16px;
+  transition: background 0.3s;
+}
+.submenu-list li a:hover {
+  background-color: var(--cor-primaria-escura);
+  border-radius: 4px;
+}
+
+/* ========== GRID 12 COLUNAS (utilitário) ========== */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-inline: var(--space-16);
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-16);
+}
+/* Exemplo de uso:
+   <div class="container">
+     <section class="card col-12 col-md-6 col-lg-4">...</section>
+   </div>
+*/
+[class*="col-"] { grid-column: span 12; }
+.col-12 { grid-column: span 12; }
+.col-6  { grid-column: span 6; }
+.col-4  { grid-column: span 4; }
+
+/* ========== SEÇÕES / CARDS ========== */
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-40, 40px);
+  padding: var(--space-40, 40px) var(--space-20, 20px);
+}
+section.card {
+  max-width: 900px;
+  width: 100%;
+  background: var(--cor-branca);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-20, 20px);
+  text-align: center;
+  margin-bottom: var(--space-40, 40px);
+}
+
+/* ========== FORMULÁRIOS ========== */
+form {
+  background: var(--cor-branca);
+  padding: var(--space-20, 20px);
+  border-radius: var(--radius-sm);
+  max-width: 600px;
+  margin: auto;
+  box-shadow: var(--shadow-sm);
+}
+fieldset { border: 1px solid #ccc; margin-bottom: var(--space-16); }
+legend { font-weight: bold; color: var(--cor-primaria); }
+
+label { display: block; margin-top: var(--space-8); text-align: left; }
+input, select, textarea, button {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background: var(--cor-branca);
+}
+
+/* Foco visível (acessibilidade) */
+input:focus, select:focus, textarea:focus, button:focus, a:focus {
+  outline: 2px solid var(--cor-secundaria);
+  outline-offset: 2px;
+}
+
+/* ========== BOTÕES ========== */
+button, input[type="submit"] {
+  background-color: var(--cor-primaria);
+  color: var(--cor-branca);
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.05s ease-in-out;
+}
+button:hover, input[type="submit"]:hover { background-color: var(--cor-primaria-escura); }
+button:active, input[type="submit"]:active { transform: translateY(1px); }
+button:disabled, input[type="submit"]:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+}
+
+/* ========== VÍDEO ========== */
+.video-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: var(--space-16) auto;
+}
+.video-wrapper video {
+  width: 100%;
+  max-width: 700px;
+  height: auto;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+}
+
+/* ========== TAGS / EMBLEMAS ========== */
+.tag {
+  display: inline-block;
+  padding: 6px 10px;
+  margin: 6px 4px 0;
+  background: var(--cor-neutra);
+  color: #222;
+  border-radius: 999px;
+  font-size: var(--font-xs);
+  font-weight: 600;
+}
+
+/* ========== ALERTAS ========== */
+.alert {
+  margin-top: var(--space-16);
+  padding: var(--space-12, 12px);
+  border-radius: var(--radius-sm);
+  font-weight: bold;
+}
+.alert.sucesso { background-color: var(--cor-sucesso-bg); color: var(--cor-sucesso-tx); }
+.alert.aviso   { background-color: var(--cor-aviso-bg);   color: var(--cor-aviso-tx); }
+.alert.erro    { background-color: var(--cor-erro-bg);    color: var(--cor-erro-tx); }
+
+/* ========== RESPONSIVIDADE (5 breakpoints) ========== */
+/* >=1200px (desktop grande): já está ok com max-widths */
+
+/* <=1200px */
+@media (max-width: 1200px) {
+  .container { max-width: 1100px; }
+}
+
+/* <=1024px */
+@media (max-width: 1024px) {
+  .container { max-width: 960px; }
+  .col-lg-6 { grid-column: span 6; }
+  .col-lg-4 { grid-column: span 4; }
+}
+
+/* <=900px  (tablet) */
+@media (max-width: 900px) {
+  .logo { width: 150px; }
+
+  /* Menu vira bloco e é controlado pelo JS (#menu.active) */
+  nav li { display: block; margin: 8px 0; }
+  #menu { display: none; }       /* escondido por padrão no mobile */
+  #menu.active { display: block; }/* mostra quando o JS ativa */
+
+  /* Submenu se torna estático no fluxo */
+  .submenu-list { position: static; box-shadow: none; }
+
+  main { padding: var(--space-24) var(--space-12,12px); gap: var(--space-24); }
+  section.card { padding: var(--space-16); }
+
+  img, video { max-width: 100%; border-radius: 8px; }
+}
+
+/* <=768px  (tablet pequeno / phablet) */
+@media (max-width: 768px) {
+  .container { padding-inline: var(--space-12,12px); }
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.5rem; }
+}
+
+/* <=480px  (celular) */
+@media (max-width: 480px) {
+  .tag { font-size: 0.8rem; }
+  .logo { max-width: 180px; width: 60%; }
+}
+
+/* <=360px  (celular pequeno) */
+@media (max-width: 360px) {
+  body { font-size: 15px; }
+  h1 { font-size: 1.75rem; }
+}
+/* Ícone hambúrguer (mostra no mobile) */
+.menu-toggle {
+  display: none; /* só aparece no mobile */
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 32px;
+  height: 26px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1100;
+}
+.menu-toggle span {
+  display: block;
+  height: 4px;
+  width: 100%;
+  background-color: var(--cor-branca);
+  border-radius: 4px;
+  transition: all 0.3s ease-in-out;
+}
+/* animação X */
+.menu-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+.menu-toggle.open span:nth-child(2) { opacity: 0; }
+.menu-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+
+/* Mobile */
+@media (max-width: 900px) {
+  .menu-toggle { display: flex; }
+
+  /* menu escondido por padrão no mobile */
+  #menu { display: none; background-color: var(--cor-primaria); padding: 20px 0; }
+  /* menu aparece quando o JS adiciona .active */
+  #menu.active { display: block; }
+
+  nav li { display: block; margin: 10px 0; }
+}
+
+
+/* Exibir o hambúrguer apenas em telas pequenas */
+@media (max-width: 900px) {
+  .menu-toggle {
+    display: flex;
+  }
+}
+

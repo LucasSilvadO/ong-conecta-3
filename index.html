@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="ONG, voluntariado, inclusão digital, ação social, projetos comunitários">
+  <title>ONG Conecta</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <header>
+  <nav aria-label="Menu principal">
+    <img src="imagens/logo.png" alt="Logo da ONG Conecta" class="logo">
+    <h1>ONG Conecta</h1>
+
+    <!-- Botão hambúrguer -->
+    <div class="menu-toggle" id="menu-toggle">
+        <span></span><span></span><span></span>
+      </div>
+
+    <!-- Menu principal -->
+    <ul id="menu">
+      <li><a href="#index" class="nav-link">Início</a></li>
+      <li><a href="#sobre" class="nav-link"> Sobre</a></li>
+      <li><a href="#projetos" class="nav-link">Projetos</a></li>
+      <li><a href="#cadastro" class="nav-link">Cadastro</a></li>
+    </ul>
+  </nav>
+</header>
+
+
+  <main id="conteudo">
+    <h1>teste</h1><!-- O conteúdo será trocado dinamicamente aqui -->
+  </main>
+
+  <footer>
+    <p>© 2025 ONG Conecta — Desenvolvido por Lucas Silva de Oliveira</p>
+  </footer>
+
+  <script>
+    document.getElementById("form-voluntario").addEventListener("submit", (e) => {
+      e.preventDefault();
+      document.getElementById("mensagem-sucesso").style.display = "block";
+    });
+  </script>
+  <script defer src="js/menu.js"></script>
+  <script src="js/spa.js"></script>
+</body>
+</html>
